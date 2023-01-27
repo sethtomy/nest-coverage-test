@@ -1,73 +1,56 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NestJS Integration Testing Coverage
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## To Run
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+```shell
+test:e2e:cov
 ```
 
-## Running the app
+### Sample Output
 
-```bash
-# development
-$ npm run start
+```shell
+> nest-coverage-test@0.0.1 test:e2e:cov
+> nyc --silent npm run start & sleep 5 && npm run test:e2e && npx kill-port 3000 && nyc report
 
-# watch mode
-$ npm run start:dev
 
-# production mode
-$ npm run start:prod
+> nest-coverage-test@0.0.1 start
+> nest start
+
+[Nest] 12244  - 01/27/2023, 4:59:56 PM     LOG [NestFactory] Starting Nest application...
+[Nest] 12244  - 01/27/2023, 4:59:56 PM     LOG [InstanceLoader] AppModule dependencies initialized +21ms
+[Nest] 12244  - 01/27/2023, 4:59:56 PM     LOG [RoutesResolver] AppController {/}: +5ms
+[Nest] 12244  - 01/27/2023, 4:59:56 PM     LOG [RouterExplorer] Mapped {/, GET} route +1ms
+[Nest] 12244  - 01/27/2023, 4:59:56 PM     LOG [NestApplication] Nest application successfully started +2ms
+
+> nest-coverage-test@0.0.1 test:e2e
+> jest --config ./test/jest-e2e.json
+
+ PASS  test/app.e2e-spec.ts
+  √ Query Server (32 ms)
+
+Test Suites: 1 passed, 1 total                                                                                                                                   
+Tests:       1 passed, 1 total                                                                                                                                   
+Snapshots:   0 total
+Time:        1.784 s, estimated 2 s
+Ran all test suites.
+Process on port 3000 killed
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |       0 |      100 |       0 |       0 |                  
+ app.controller.ts |       0 |      100 |       0 |       0 | 1-10             
+ app.module.ts     |       0 |      100 |     100 |       0 | 1-10             
+ app.service.ts    |       0 |      100 |       0 |       0 | 1-6              
+ main.ts           |       0 |      100 |       0 |       0 | 5-8              
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 0% ( 0/22 )
+Branches     : 100% ( 0/0 )
+Functions    : 0% ( 0/4 )
+Lines        : 0% ( 0/16 )
+================================================================================
+
+Process finished with exit code 0
+
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
